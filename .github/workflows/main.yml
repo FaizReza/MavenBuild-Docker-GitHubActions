@@ -1,0 +1,21 @@
+---
+name: Build Java Application
+on:
+# on what event the workflow should run
+  push:
+    branches:
+      - master
+jobs:
+  job1_Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone the Repository
+        uses: actions/checkout@v5
+      - name: Install Java and maven
+        uses: actions/setup-java@v5
+        with: 
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      - name: Build the Java code/application/maven project
+        run: mvn clean install package
